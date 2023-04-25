@@ -13,12 +13,10 @@ import lombok.NoArgsConstructor;
         @Id
         @GeneratedValue
         private Long id;
-        private String name;
         private String date;
 
 
-        public  Orders(String name, String date){
-            this.name = name;
+        public  Orders(String date){
             this.date = date;
         }
 
@@ -32,8 +30,7 @@ import lombok.NoArgsConstructor;
         private Items items; // dubbelkolla annoteringen
 
 
-        public Orders(String name, String date, Items items, Customers customers){
-            this.name = name;
+        public Orders(String date, Items items, Customers customers){
             this.date = date;
             this.items = items;
             this.customers = customers;

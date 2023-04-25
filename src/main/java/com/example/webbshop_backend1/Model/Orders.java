@@ -1,7 +1,45 @@
 package com.example.webbshop_backend1.Model;
 
-public class Orders {
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    //Dennis
+
+    @Entity
+    @Data
+    @NoArgsConstructor
+    public class Orders {
+
+        @Id
+        @GeneratedValue
+        private Long id;
+        private String name;
+        private String date;
+
+
+        public  Orders(String name, String date){
+            this.name = name;
+            this.date = date;
+        }
+
+
+        @ManyToOne
+        @JoinColumn
+        private Customers customers;
+
+        @ManyToOne
+        @JoinColumn
+        private Items items; // dubbelkolla annoteringen
+
+
+        public Orders(String name, String date, Items items, Customers customers){
+            this.name = name;
+            this.date = date;
+            this.items = items;
+            this.customers = customers;
+        }
+
+
 
 }
+

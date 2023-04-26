@@ -2,6 +2,7 @@ package com.example.webbshop_backend1.Controller;
 
 import com.example.webbshop_backend1.Repo.CustomerRepo;
 import com.example.webbshop_backend1.Repo.ItemsRepo;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,4 +16,5 @@ public class OrderController {
         this.customerRepo = customerRepo;
         this.itemsRepo = itemsRepo;
     }
+
 }

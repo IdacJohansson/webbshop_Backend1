@@ -24,6 +24,7 @@ public class CustomerController {
         return customerRepo.findAll();
     }
 
+
     //curl http://localhost:8080/customers/add -H "Content-Type:application/json" -d "{\"name\":\"Johnny Bravo\", \"ssn\":\"199007226512\"}" -v
     @PostMapping("customers/add")
     public List<Customers> addCustomers(@RequestBody Customers c) {

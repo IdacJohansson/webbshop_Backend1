@@ -19,10 +19,6 @@ public class ItemController {
     }
 
 
-
-
-
-
     // http://localhost:8080/items (Denna returnerar alla varor)
     @RequestMapping("items")
     public List<Items> getAllItems(){

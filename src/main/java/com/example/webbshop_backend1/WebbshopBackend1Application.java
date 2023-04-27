@@ -39,14 +39,18 @@ public class WebbshopBackend1Application {
             itemsRepo.save(i2);
             itemsRepo.save(i3);
 
-            Order o1 = new Order("2023-04-17", i1, c1);
-            Order o2 = new Order("2023-04-15", i2, c2);
-            Order o3 = new Order("2023-04-19", i3, c3);
-
-            orderRepo.save(o1);
-            orderRepo.save(o2);
-            orderRepo.save(o3);
-
+            orderRepo.save(new Order("2023-04-17", i1, c1));
+            orderRepo.save(new Order("2023-04-15", i2, c2));
+            orderRepo.save(new Order("2023-04-19", i3, c3));
+            orderRepo.save(new Order("2023-04-17", i1, c2));
+            orderRepo.save(new Order("2023-04-15", i2, c2));
+            orderRepo.save(new Order("2023-04-19", i3, c2));
+            orderRepo.save(new Order("2023-04-17", i1, c1));
+            orderRepo.save(new Order("2023-04-15", i2, c3));
+            orderRepo.save(new Order("2023-04-19", i3, c3));
+            orderRepo.save(new Order("2023-04-17", i1, c3));
+            orderRepo.save(new Order("2023-04-15", i2, c1));
+            orderRepo.save(new Order("2023-04-19", i3, c1));
 
         };
     }

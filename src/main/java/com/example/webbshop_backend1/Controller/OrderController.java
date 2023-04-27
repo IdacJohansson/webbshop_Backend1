@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class OrderController {
@@ -58,19 +59,11 @@ public class OrderController {
     }
 
     @RequestMapping("orders/{customerId}")
-    public String findOrdersByCustomerId(@PathVariable Long id) {
-        List<Order> orderFromCustomer = new ArrayList<>();
-        String name = null;
-        while(true) {
-            if (orderRepo != null) {
-                Order o = orderRepo.findById(id).orElse(null);
-                if (o != null) {
-                    orderFromCustomer.add(o);
-                    name = o.getCustomer().getCustomerName();
-                }
-            }
+    public List<Order> findOrdersByCustomerId(@PathVariable Long customerId) {
 
-            return "Orders made by " + name + orderFromCustomer;
-        }
+        List<Order> all = orderRepo.findAll();
+        return all.stream()
+                .filter(order -> customerId.equals(order.getCustomer().getId()))
+                .collect(Collectors.toList());
     }
 }

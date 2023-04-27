@@ -33,14 +33,17 @@ public class CustomerController {
 
     //TODO
     //http://localhost:8080/customers (Denna returnerar en kund mha @PathParam)
-    /*@RequestMapping("customers/{id}")
-    public Customers findCustomerById(@PathParam("id") Long id, @PathParam("name") String name, @PathParam("ssn") String ssn) {
-        if (customerRepo != null){
-        customerRepo.save(new Customers(name, ssn));
-        return customerRepo.findById(id).get();
+    @RequestMapping("customers/{id}")
+    public String findCustomerById(@PathVariable Long id) {
+        String name = null;
+        if (customerRepo != null) {
+            Customers C = customerRepo.findById(id).orElse(null);
+            if (C != null) {
+                name = C.getCustomerName();
+            }
         }
-        return null;
-    }*/
+        return "Customer with id " + id + " is " + name;
+    }
 
     //http://localhost:8080/customers (Denna tar bort en kund vid behov)
     @RequestMapping("customers/delete/{id}")

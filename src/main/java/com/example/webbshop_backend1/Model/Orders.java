@@ -37,6 +37,7 @@ import lombok.NoArgsConstructor;
         }
 
 
-
-}
+        public Orders(Items i, Customers c) {
+        }
+    }
 

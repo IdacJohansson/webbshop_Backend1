@@ -1,12 +1,10 @@
 package com.example.webbshop_backend1.Controller;
 
-import com.example.webbshop_backend1.Model.Customers;
-import com.example.webbshop_backend1.Model.Items;
+import com.example.webbshop_backend1.Model.Customer;
 import com.example.webbshop_backend1.Repo.CustomerRepo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -14,7 +12,7 @@ public class CustomerController {
 
     private final CustomerRepo customerRepo;
 
-    Customers customer = new Customers();
+    Customer customer = new Customer();
 
     public CustomerController(CustomerRepo customerRepo){
         this.customerRepo = customerRepo;
@@ -22,14 +20,14 @@ public class CustomerController {
 
     //http://localhost:8080/customers (Denna returnerar alla kunder)
     @RequestMapping("customers")
-    public List<Customers> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return customerRepo.findAll();
     }
 
 
     //curl http://localhost:8080/customers/add -H "Content-Type:application/json" -d "{\"name\":\"Johnny Bravo\", \"ssn\":\"198707226512\"}" -v
     @PostMapping("customers/add")
-    public List<Customers> addCustomers(@RequestBody Customers c) {
+    public List<Customer> addCustomers(@RequestBody Customer c) {
         customerRepo.save(c);
         return customerRepo.findAll();
     }
@@ -38,7 +36,7 @@ public class CustomerController {
     public String findCustomerById(@PathVariable Long id) {
         String name = null;
         if (customerRepo != null) {
-            Customers C = customerRepo.findById(id).orElse(null);
+            Customer C = customerRepo.findById(id).orElse(null);
             if (C != null) {
                 name = C.getCustomerName();
             }

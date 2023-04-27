@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-    @Entity
+    @Entity(name = "orders")
     @Data
     @NoArgsConstructor
-    public class Orders {
+    public class Order {
 
         @Id
         @GeneratedValue
@@ -16,24 +16,24 @@ import lombok.NoArgsConstructor;
         private String date;
 
 
-        public  Orders(String date){
+        public Order(String date){
             this.date = date;
         }
 
 
         @ManyToOne
         @JoinColumn
-        private Customers customers;
+        private Customer customer;
 
         @ManyToOne
         @JoinColumn
-        private Items items; // dubbelkolla annoteringen
+        private Item item; // dubbelkolla annoteringen
 
 
-        public Orders(String date, Items items, Customers customers){
+        public Order(String date, Item item, Customer customer){
             this.date = date;
-            this.items = items;
-            this.customers = customers;
+            this.item = item;
+            this.customer = customer;
         }
 
     }

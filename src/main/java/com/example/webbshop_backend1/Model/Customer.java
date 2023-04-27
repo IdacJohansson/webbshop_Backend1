@@ -5,12 +5,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Entity
+@Entity(name="customers")
 @Data
 @NoArgsConstructor
-public class Customers {
+public class Customer {
 
     @Id
     @GeneratedValue
@@ -18,7 +16,7 @@ public class Customers {
     private String customerName;
     private String ssn;
 
-    public Customers(String customerName, String ssn){
+    public Customer(String customerName, String ssn){
         this.customerName = customerName;
         this.ssn = ssn;
 

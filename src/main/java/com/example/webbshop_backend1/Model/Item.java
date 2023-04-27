@@ -7,10 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-    @Entity
+    @Entity(name = "items")
     @Data
     @NoArgsConstructor
-    public class Items {
+    public class Item {
 
         @Id
         @GeneratedValue
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
         private String name;
         private int price;
 
-        public Items(String name, int price){
+        public Item(String name, int price){
             this.name = name;
             this.price = price;
 

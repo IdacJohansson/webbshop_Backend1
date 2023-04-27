@@ -20,6 +20,7 @@ public class CustomerController {
         this.customerRepo = customerRepo;
     }
 
+    //http://localhost:8080/customers (Denna returnerar alla kunder)
     @RequestMapping("customers")
     public List<Customers> getAllCustomers() {
         return customerRepo.findAll();
@@ -39,7 +40,7 @@ public class CustomerController {
         if (customerRepo != null) {
             Customers C = customerRepo.findById(id).orElse(null);
             if (C != null) {
-                name = C.getName();
+                name = C.getCustomerName();
             }
         }
         return "Customer with id number " + id + " is " + name;

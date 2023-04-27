@@ -1,11 +1,11 @@
 package com.example.webbshop_backend1.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -15,15 +15,13 @@ public class Customers {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private String customerName;
     private String ssn;
 
-    public Customers(String name, String ssn){
-        this.name = name;
+    public Customers(String customerName, String ssn){
+        this.customerName = customerName;
         this.ssn = ssn;
 
     }
-
-
 
 }

@@ -1,11 +1,9 @@
 package com.example.webbshop_backend1.Controller;
 
+import com.example.webbshop_backend1.Model.Customers;
 import com.example.webbshop_backend1.Model.Items;
 import com.example.webbshop_backend1.Repo.ItemsRepo;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,18 @@ public class ItemController {
     public List<Items> addItems(@RequestBody Items i) {
         itemsRepo.save(i);
         return itemsRepo.findAll();
+    }
+
+    @RequestMapping("items/{id}")
+    public String findCustomerById(@PathVariable Long id) {
+        String name = null;
+        if (itemsRepo != null) {
+            Items i = itemsRepo.findById(id).orElse(null);
+            if (i != null) {
+                name = i.getName();
+            }
+        }
+        return "Item with id number " + id + " is " + name;
     }
 }
 

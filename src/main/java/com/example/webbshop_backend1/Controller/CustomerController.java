@@ -12,8 +12,6 @@ public class CustomerController {
 
     private final CustomerRepo customerRepo;
 
-    Customer customer = new Customer();
-
     public CustomerController(CustomerRepo customerRepo){
         this.customerRepo = customerRepo;
     }

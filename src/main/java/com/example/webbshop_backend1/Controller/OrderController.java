@@ -21,16 +21,13 @@ public class OrderController {
     private final ItemsRepo itemsRepo;
     private final OrderRepo orderRepo;
 
-
     public OrderController(OrderRepo orderRepo, CustomerRepo customerRepo, ItemsRepo itemsRepo) {
         this.customerRepo = customerRepo;
         this.itemsRepo = itemsRepo;
         this.orderRepo = orderRepo;
     }
 
-
     // curl http://localhost:8080/items/buy -H "Content-Type:application/json" -d "{\"customerId\":\"1\", \"itemsId\":\"3\"}" -v
-
     // Denna endpoint gör ett nytt köp för en specifik kund och en specifik vara, baserat på id
     @PostMapping("items/buy")
     public List<Order> customerBuy(@RequestBody Map<String, Long> body) {
@@ -76,5 +73,4 @@ public class OrderController {
             return "Orders made by " + name + orderFromCustomer;
         }
     }
-
 }

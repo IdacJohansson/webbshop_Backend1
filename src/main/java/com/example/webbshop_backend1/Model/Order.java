@@ -15,12 +15,6 @@ import lombok.NoArgsConstructor;
         private Long id;
         private String date;
 
-
-        public Order(String date){
-            this.date = date;
-        }
-
-
         @ManyToOne
         @JoinColumn
         private Customer customer;
@@ -28,7 +22,6 @@ import lombok.NoArgsConstructor;
         @ManyToOne
         @JoinColumn
         private Item item; // dubbelkolla annoteringen
-
 
         public Order(String date, Item item, Customer customer){
             this.date = date;

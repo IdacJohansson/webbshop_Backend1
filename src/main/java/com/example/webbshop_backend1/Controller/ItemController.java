@@ -15,13 +15,11 @@ public class ItemController {
         this.itemsRepo= itemsRepo;
     }
 
-
     // http://localhost:8080/items (Denna returnerar alla varor)
     @RequestMapping("items")
     public List<Item> getAllItems(){
         return itemsRepo.findAll();
     }
-
 
     //curl http://localhost:8080/items/add -H "Content-Type:application/json" -d "{\"name\":\"Green beret\", \"price\":\"324\"}" -v
     @PostMapping("items/add")
@@ -42,5 +40,3 @@ public class ItemController {
         return "Item with id number " + id + " is " + name;
     }
 }
-
-

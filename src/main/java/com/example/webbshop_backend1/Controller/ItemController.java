@@ -25,6 +25,7 @@ public class ItemController {
         return itemsRepo.findAll();
     }
 
+
     //curl http://localhost:8080/items/add -H "Content-Type:application/json" -d "{\"name\":\"Green beret\", \"price\":\"324\"}" -v
     @PostMapping("items/add")
     public List<Items> addItems(@RequestBody Items i) {

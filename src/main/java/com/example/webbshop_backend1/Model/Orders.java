@@ -36,7 +36,5 @@ import lombok.NoArgsConstructor;
             this.customers = customers;
         }
 
-
-
-}
+    }
 

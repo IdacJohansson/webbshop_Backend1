@@ -31,7 +31,7 @@ public class OrderController {
 
     // curl http://localhost:8080/items/buy -H "Content-Type:application/json" -d "{\"customerId\":\"1\", \"itemsId\":\"3\"}" -v
 
-    // (Denna endpoint gör ett nytt köp för en specifik kund och en specifik vara, baserat på id).
+    // Denna endpoint gör ett nytt köp för en specifik kund och en specifik vara, baserat på id
     @PostMapping("items/buy")
     public List<Orders> customerBuy(@RequestBody Map<String, Long> body) {
         LocalDateTime date = LocalDateTime.now();

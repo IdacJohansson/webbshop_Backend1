@@ -6,10 +6,7 @@ import com.example.webbshop_backend1.Model.Orders;
 import com.example.webbshop_backend1.Repo.CustomerRepo;
 import com.example.webbshop_backend1.Repo.ItemsRepo;
 import com.example.webbshop_backend1.Repo.OrderRepo;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,8 @@ public class OrderController {
         this.itemsRepo = itemsRepo;
     }
 
+
+
     // (Denna endpoint gör ett nytt köp för en specifik kund och en specifik vara, baserat på id).
     @PostMapping("items/buy")
     public List<Orders> customerBuy(@RequestBody Items i, @RequestBody Customers c) {
@@ -36,6 +35,24 @@ public class OrderController {
     public List<Orders> getAllOrders() {
         return orderRepo.findAll();
     }
+
+
+    // http://localhost:8080/orders/{customerId} (Denna returnerar alla köp för en kund baserat
+    //på kundens id)
+    public List<Orders> getCustomersOrders(long id){
+        return orderRepo.findAllByCustomersId(id);
+    }
+
+    @RequestMapping("orders/{customerId}")
+    public List<Orders> ordersByCustomersId(@PathVariable long customerId){
+        return getCustomersOrders(customerId);
+    }
+
+
+
+
+
+
 
 
 }

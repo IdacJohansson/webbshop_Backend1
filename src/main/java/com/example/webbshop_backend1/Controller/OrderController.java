@@ -25,15 +25,11 @@ public class OrderController {
     private final ItemsRepo itemsRepo;
     private final OrderRepo orderRepo;
 
-
-
     public OrderController(OrderRepo orderRepo, CustomerRepo customerRepo, ItemsRepo itemsRepo) {
         this.customerRepo = customerRepo;
         this.itemsRepo = itemsRepo;
         this.orderRepo = orderRepo;
     }
-
-
 
     // curl http://localhost:8080/items/buy -H "Content-Type:application/json" -d "{\"customerId\":\"1\", \"itemsId\":\"3\"}" -v
     // Denna endpoint gör ett nytt köp för en specifik kund och en specifik vara, baserat på id
@@ -61,7 +57,6 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
-
     @RequestMapping("orders")
     public List<Orders> getAllOrders() {
         return orderRepo.findAll();
@@ -78,16 +73,6 @@ public class OrderController {
         return getCustomersOrders(customerId);
     }
 
-    // http://localhost:8080/orders/{customerId} (Denna returnerar alla köp för en kund baserat
-    //på kundens id)
-    public List<Orders> getCustomersOrders(long id){
-        return orderRepo.findAllByCustomersId(id);
-    }
-
-    @RequestMapping("orders/{customerId}")
-    public List<Orders> ordersByCustomersId(@PathVariable long customerId){
-        return getCustomersOrders(customerId);
-    }
 
 
 

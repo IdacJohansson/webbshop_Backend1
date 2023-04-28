@@ -16,10 +16,13 @@ public class OrderController {
     private final CustomerRepo customerRepo;
     private final ItemsRepo itemsRepo;
 
+    private final OrderRepo orderRepo;
+
 
     public OrderController(OrderRepo orderRepo, CustomerRepo customerRepo, ItemsRepo itemsRepo) {
         this.customerRepo = customerRepo;
         this.itemsRepo = itemsRepo;
+        this.orderRepo = orderRepo;
     }
 
 

@@ -21,7 +21,6 @@ public class OrderController {
     private final ItemsRepo itemsRepo;
     private final OrderRepo orderRepo;
 
-    private final OrderRepo orderRepo;
 
 
     public OrderController(OrderRepo orderRepo, CustomerRepo customerRepo, ItemsRepo itemsRepo) {

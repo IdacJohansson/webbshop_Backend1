@@ -60,23 +60,6 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
-    @RequestMapping("orders/{customerId}")
-    public String findOrdersByCustomerId(@PathVariable Long id) {
-        List<Orders> ordersFromCustomer = new ArrayList<>();
-        String name = null;
-        while(true) {
-            if (orderRepo != null) {
-                Orders o = orderRepo.findById(id).orElse(null);
-                if (o != null) {
-                    ordersFromCustomer.add(o);
-                    name = o.getCustomers().getCustomerName();
-                }
-            }
-
-            return "Orders made by " + name + ordersFromCustomer;
-        }
-    }
-
     // http://localhost:8080/orders/{customerId} (Denna returnerar alla köp för en kund baserat
     //på kundens id)
     public List<Orders> getCustomersOrders(long id){

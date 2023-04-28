@@ -77,4 +77,15 @@ public class OrderController {
         }
     }
 
+    // http://localhost:8080/orders/{customerId} (Denna returnerar alla köp för en kund baserat
+    //på kundens id)
+    public List<Orders> getCustomersOrders(long id){
+        return orderRepo.findAllByCustomersId(id);
+    }
+
+    @RequestMapping("orders/{customerId}")
+    public List<Orders> ordersByCustomersId(@PathVariable long customerId){
+        return getCustomersOrders(customerId);
+    }
+
 }

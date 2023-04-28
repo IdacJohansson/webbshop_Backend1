@@ -1,20 +1,22 @@
 package com.example.webbshop_backend1.Controller;
 
 import com.example.webbshop_backend1.Model.Customers;
-import com.example.webbshop_backend1.Model.Items;
+
 import com.example.webbshop_backend1.Repo.CustomerRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @RestController
 public class CustomerController {
 
-    private final CustomerRepo customerRepo;
+    private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
 
-    Customers customer = new Customers();
+    private final CustomerRepo customerRepo;
 
     public CustomerController(CustomerRepo customerRepo){
         this.customerRepo = customerRepo;
@@ -26,11 +28,11 @@ public class CustomerController {
         return customerRepo.findAll();
     }
 
-
-    //curl http://localhost:8080/customers/add -H "Content-Type:application/json" -d "{\"name\":\"Johnny Bravo\", \"ssn\":\"198707226512\"}" -v
+    //curl http://localhost:8080/customers/add -H "Content-Type:application/json" -d "{\"customerName\":\"Johnny Bravo\", \"ssn\":\"198707226512\"}" -v
     @PostMapping("customers/add")
     public List<Customers> addCustomers(@RequestBody Customers c) {
         customerRepo.save(c);
+        log.error("Customer " + c.getCustomerName() + " was added");
         return customerRepo.findAll();
     }
 

@@ -1,14 +1,19 @@
 package com.example.webbshop_backend1.Controller;
 
-import com.example.webbshop_backend1.Model.Customers;
+import ch.qos.logback.classic.Logger;
 import com.example.webbshop_backend1.Model.Items;
 import com.example.webbshop_backend1.Repo.ItemsRepo;
+
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 public class ItemController {
+
+    private static final Logger log = (Logger) LoggerFactory.getLogger(ItemController.class);
 
     private final ItemsRepo itemsRepo;
 
@@ -24,13 +29,6 @@ public class ItemController {
     }
 
 
-    //curl http://localhost:8080/items/add -H "Content-Type:application/json" -d "{\"name\":\"Green beret\", \"price\":\"324\"}" -v
-    @PostMapping("items/add")
-    public List<Items> addItems(@RequestBody Items i) {
-        itemsRepo.save(i);
-        return itemsRepo.findAll();
-    }
-
     @RequestMapping("items/{id}")
     public String findCustomerById(@PathVariable Long id) {
         String name = null;
@@ -40,8 +38,18 @@ public class ItemController {
                 name = i.getName();
             }
         }
+
         return "Item with id number " + id + " is " + name;
     }
+
+    //curl http://localhost:8080/items/add -H "Content-Type:application/json" -d "{\"name\":\"Green beret\", \"price\":\"324\"}" -v
+    @PostMapping("items/add")
+    public List<Items> addItems(@RequestBody Items i) {
+        itemsRepo.save(i);
+        log.error("Item " + i.getName() + " was added to database");
+        return itemsRepo.findAll();
+    }
+
 }
 
 

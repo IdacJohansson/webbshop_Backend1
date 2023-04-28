@@ -6,6 +6,8 @@ import com.example.webbshop_backend1.Model.Orders;
 import com.example.webbshop_backend1.Repo.CustomerRepo;
 import com.example.webbshop_backend1.Repo.ItemsRepo;
 import com.example.webbshop_backend1.Repo.OrderRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -16,6 +18,8 @@ import java.util.Map;
 
 @RestController
 public class OrderController {
+
+    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
     private final CustomerRepo customerRepo;
     private final ItemsRepo itemsRepo;
@@ -30,7 +34,6 @@ public class OrderController {
 
 
     // curl http://localhost:8080/items/buy -H "Content-Type:application/json" -d "{\"customerId\":\"1\", \"itemsId\":\"3\"}" -v
-
     // Denna endpoint gör ett nytt köp för en specifik kund och en specifik vara, baserat på id
     @PostMapping("items/buy")
     public List<Orders> customerBuy(@RequestBody Map<String, Long> body) {
@@ -51,6 +54,7 @@ public class OrderController {
 
         Orders newOrder = new Orders(dateString, item, customer);
         orderRepo.save(newOrder);
+        log.error("Customer " + customer.getCustomerName() + " just bought " + item.getName());
         return orderRepo.findAll();
     }
 
@@ -60,8 +64,8 @@ public class OrderController {
         return orderRepo.findAll();
     }
 
-    // http://localhost:8080/orders/{customerId} (Denna returnerar alla köp för en kund baserat
-    //på kundens id)
+    // http://localhost:8080/orders/{customerId}
+    // Denna returnerar alla köp för en kund baserat på kundens id
     public List<Orders> getCustomersOrders(long id){
         return orderRepo.findAllByCustomersId(id);
     }

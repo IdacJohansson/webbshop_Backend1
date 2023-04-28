@@ -36,8 +36,5 @@ import lombok.NoArgsConstructor;
             this.customers = customers;
         }
 
-
-        public Orders(Items i, Customers c) {
-        }
     }
 

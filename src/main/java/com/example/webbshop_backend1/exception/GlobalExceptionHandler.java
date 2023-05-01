@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Slf4j
 public class GlobalExceptionHandler {
 
-    private String createErrorMessage(NotFoundCustomerException ex) {
-        String message = String.format("error from type= %s, occurred with error message=%s, result=%s", ex.getClass().getSimpleName(), ex.getMessage(), HttpStatus.NOT_FOUND);
+    private String createErrorMessage(Throwable ex) {
+        String message = String.format("Error from type= %s, occurred with error message=%s, result=%s", ex.getClass().getSimpleName(), ex.getMessage(), HttpStatus.NOT_FOUND);
         log.error(message);
         return message;
     }
@@ -28,6 +28,16 @@ public class GlobalExceptionHandler {
         createErrorMessage(ex);
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(ex.getMessage());
+    }
+
+    @ResponseStatus
+    @ExceptionHandler(NotSavedCustomerException.class)
+    protected ResponseEntity<Object> handleNotSavedException(NotSavedCustomerException ex) {
+        createErrorMessage(ex);
+        return ResponseEntity
+                .status(HttpStatus.SERVICE_UNAVAILABLE)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(ex.getMessage());
     }

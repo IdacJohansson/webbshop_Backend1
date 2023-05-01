@@ -2,48 +2,40 @@ package com.example.webbshop_backend1.Controller;
 
 import com.example.webbshop_backend1.Model.Customer;
 import com.example.webbshop_backend1.Repo.CustomerRepo;
+import com.example.webbshop_backend1.exception.NotSavedCustomerException;
 import com.example.webbshop_backend1.exception.NotFoundCustomerException;
+import com.example.webbshop_backend1.service.CustomerService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RestController
+@RestController()
+@RequestMapping("/customer")
 public class CustomerController {
 
-    private final CustomerRepo customerRepo;
+    private final CustomerService customerService;
 
-    public CustomerController(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     //http://localhost:8080/customers (Denna returnerar alla kunder)
-    @RequestMapping("customers")
+    @GetMapping("/all")
     public List<Customer> getAllCustomers() throws NotFoundCustomerException {
-        List<Customer> allCustomers = customerRepo.findAll();
-        if (allCustomers.isEmpty()) {
-            throw new NotFoundCustomerException("No customers find!");
-        } else
-            return allCustomers;
+        return customerService.findAllCustomer();
     }
 
 
     //curl http://localhost:8080/customers/add -H "Content-Type:application/json" -d "{\"name\":\"Johnny Bravo\", \"ssn\":\"198707226512\"}" -v
-    @PostMapping("customers/add")
-    public List<Customer> addCustomers(@RequestBody Customer c) {
-        customerRepo.save(c);
-        return customerRepo.findAll();
+    @PostMapping("/add")
+    public boolean addCustomer(@RequestBody Customer newCustomer) throws NotSavedCustomerException {
+        return customerService.save(newCustomer);
     }
 
-    @RequestMapping("customers/{id}")
-    public String findCustomerById(@PathVariable Long id) {
-        String name = null;
-        if (customerRepo != null) {
-            Customer C = customerRepo.findById(id).orElse(null);
-            if (C != null) {
-                name = C.getCustomerName();
-            }
-        }
-        return "Customer with id number " + id + " is " + name;
+    @RequestMapping("/{id}")
+    public Customer findCustomerById(@PathVariable("id") Long id) throws NotFoundCustomerException {
+        return customerService.findCustomerById(id);
     }
 }

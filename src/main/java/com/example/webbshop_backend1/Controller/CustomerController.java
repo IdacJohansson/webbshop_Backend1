@@ -2,6 +2,7 @@ package com.example.webbshop_backend1.Controller;
 
 import com.example.webbshop_backend1.Model.Customer;
 import com.example.webbshop_backend1.Repo.CustomerRepo;
+import com.example.webbshop_backend1.exception.NotFoundCustomerException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,14 +13,18 @@ public class CustomerController {
 
     private final CustomerRepo customerRepo;
 
-    public CustomerController(CustomerRepo customerRepo){
+    public CustomerController(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
 
     //http://localhost:8080/customers (Denna returnerar alla kunder)
     @RequestMapping("customers")
-    public List<Customer> getAllCustomers() {
-        return customerRepo.findAll();
+    public List<Customer> getAllCustomers() throws NotFoundCustomerException {
+        List<Customer> allCustomers = customerRepo.findAll();
+        if (allCustomers.isEmpty()) {
+            throw new NotFoundCustomerException("No customers find!");
+        } else
+            return allCustomers;
     }
 
 

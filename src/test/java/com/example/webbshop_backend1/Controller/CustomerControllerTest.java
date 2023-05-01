@@ -27,9 +27,26 @@ class CustomerControllerTest {
 
     /* HAPPY PATH*/
 
+    @Test
+    void should_return_all_customers() {
+        
+    }
 
     @Test
-    public void should_throw_NotFoundException_if_no_customer_returned_from_database() throws Exception {
+    void should_return_true_if_customer_saved(){
+    }
+
+    @Test
+    void should_return_customer_by_id() {
+    }
+
+    /* Checking critical area */
+    @Test
+    void throw_NotFoundCustomerException_if_findCustomerById_not_find() {
+    }
+
+    @Test
+    void throw_NotFoundException_if_no_customer_returned_from_database() throws Exception {
 
         this.mockMvc
                 .perform(get("/customers"))
@@ -38,5 +55,7 @@ class CustomerControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"));
     }
 
-
+    @Test
+    void throw_NotSavedCustomerException_if_add_Not_valid_customer() {
+    }
 }

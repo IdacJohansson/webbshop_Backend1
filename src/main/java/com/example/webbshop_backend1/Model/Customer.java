@@ -2,14 +2,14 @@ package com.example.webbshop_backend1.Model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+
+import java.util.Objects;
 
 @Entity(name="customers")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue
@@ -23,4 +23,11 @@ public class Customer {
         this.ssn = ssn;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(customerName, customer.customerName) && Objects.equals(ssn, customer.ssn);
+    }
 }

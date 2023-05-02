@@ -1,11 +1,9 @@
 package com.example.webbshop_backend1.Controller;
 
 import com.example.webbshop_backend1.Model.Customer;
-import com.example.webbshop_backend1.Repo.CustomerRepo;
-import com.example.webbshop_backend1.exception.NotSavedCustomerException;
 import com.example.webbshop_backend1.exception.NotFoundCustomerException;
+import com.example.webbshop_backend1.exception.NotSavedCustomerException;
 import com.example.webbshop_backend1.service.CustomerService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

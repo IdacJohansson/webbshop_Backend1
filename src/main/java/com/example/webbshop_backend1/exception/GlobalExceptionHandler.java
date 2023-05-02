@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 
-@Order(Ordered.HIGHEST_PRECEDENCE)
+
+@Order(Ordered.HIGHEST_PRECEDENCE)  //@Order used for Advice execution precedence. The highest precedence advice runs first.
 @ControllerAdvice
+/*@ControllerAdvice
+     - full control over the body of the response
+     - provides mapping of several exceptions to the same method, to be handled together
+     - makes good use of the newer RESTful ResposeEntity response.*/
 @Slf4j
 public class GlobalExceptionHandler {
 

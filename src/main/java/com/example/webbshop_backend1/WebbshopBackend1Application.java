@@ -42,6 +42,7 @@ public class WebbshopBackend1Application {
             itemsRepo.save(i2);
             itemsRepo.save(i3);
 
+/*
             orderRepo.save(new Order("2023-04-17", i1, c1));
             orderRepo.save(new Order("2023-04-15", i2, c2));
             orderRepo.save(new Order("2023-04-19", i3, c3));
@@ -52,6 +53,7 @@ public class WebbshopBackend1Application {
             orderRepo.save(new Order("2023-04-17", i1, c3));
             orderRepo.save(new Order("2023-04-15", i2, c1));
             orderRepo.save(new Order("2023-04-19", i3, c1));
+*/
 
         };
     }

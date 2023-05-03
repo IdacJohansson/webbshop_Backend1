@@ -25,7 +25,6 @@ public class WebbshopBackend1Application {
     @Bean
     public CommandLineRunner pojo(CustomerRepo customerRepo, ItemsRepo itemsRepo, OrderRepo orderRepo){
         return args -> {
-/*
 
             Customer c1 = new Customer("Anna Andersson", "196602071122");
             Customer c2 = new Customer("Bella Bengtsson", "198610096655");
@@ -49,13 +48,10 @@ public class WebbshopBackend1Application {
             orderRepo.save(new Order("2023-04-17", i1, c2));
             orderRepo.save(new Order("2023-04-15", i2, c2));
             orderRepo.save(new Order("2023-04-19", i3, c2));
-            orderRepo.save(new Order("2023-04-17", i1, c1));
-            orderRepo.save(new Order("2023-04-15", i2, c3));
             orderRepo.save(new Order("2023-04-19", i3, c3));
             orderRepo.save(new Order("2023-04-17", i1, c3));
             orderRepo.save(new Order("2023-04-15", i2, c1));
             orderRepo.save(new Order("2023-04-19", i3, c1));
-*/
 
         };
     }
